@@ -16,9 +16,11 @@ class Form extends Component {
     });
   };
   onSubmit = e => {
+    e.preventDefault();
     const { firstname, lastname, address, birthDate, message } = this.state;
     const user = { firstname, lastname, address, birthDate, message };
-    e.preventDefault();
+    this.props.addUser(user);
+
     // this.setState({ users: this.state.users.push(user) });
     console.log(this.state, user);
     this.refs.firstname.value = "";
@@ -93,8 +95,9 @@ class Form extends Component {
           <div className="submit">
             <input type="submit" value="Submit" className="btn" />
           </div>
-          <div className="check users"> 
-          <Link to="/users-list"></Link></div>
+          <div className="check users">
+            <Link to="/users-list">UserList</Link>
+          </div>
         </div>
       </form>
     );
