@@ -33,7 +33,7 @@ class App extends Component {
               path="/users-list"
               render={props => (
                 <React.Fragment>
-                  <Userslist userslist={this.state.user}/>
+                  <Userslist userslist={this.state.users}/>
                 </React.Fragment>
               )}
             />
