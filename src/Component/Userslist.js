@@ -1,15 +1,21 @@
-import React, {Component} from "react";
+import React, {Fragment, Component } from "react";
+import Users from "./Users"
 
-class Userslist extends Component{
-    render(){
+class Userslist extends Component {
+  render() {
+    //   console.log(this.props.userslist)
+   return(
+        <Fragment>
+             {this.props.userslist.map((user) => {
+                 return <Users key={user.uniqueID} user={user}/>
+        })}
         
-//   console.log(this.props.userslist)
-        return(
-            <div>
-               
-            </div>
-        )
-    }
+        </Fragment>
+    
+       
+    )
+  }
 }
 
-export default Userslist
+export default Userslist;
+
