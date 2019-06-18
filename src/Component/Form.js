@@ -83,11 +83,11 @@ class Form extends Component {
             />
           </div>
           <div className="message">
-            <h4>Message: </h4>
+            <h4>Favorite Quote: </h4>
             <input
               type="text"
               name="message"
-              placeholder="Your thoughts..."
+              placeholder="Your favorite quote"
               ref="message"
               onChange={this.onChange}
             />
