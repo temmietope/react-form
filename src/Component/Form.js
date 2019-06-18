@@ -18,13 +18,11 @@ class Form extends Component {
   };
   onSubmit = e => {
     e.preventDefault();
-    this.setState({uniqueID:rand()})
-    const { firstname, lastname, address, birthDate, message, uniqueID } = this.state;
-    const user = { firstname, lastname, address, birthDate, message, uniqueID };
+    const { firstname, lastname, address, birthDate, message } = this.state;
+    const user = { firstname, lastname, address, birthDate, message, uniqueID:rand() };
     this.props.addUser(user);
 
-    // this.setState({ users: this.state.users.push(user) });
-    console.log(this.state, user);
+    console.log( user);
     this.refs.firstname.value = "";
     this.refs.lastname.value = "";
     this.refs.address.value = "";
