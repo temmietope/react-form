@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 
+
 class Users extends Component {
   render() {
     const {
@@ -12,12 +13,12 @@ class Users extends Component {
     } = this.props.user;
     return (
       <div>
-        <p>{uniqueID}</p>
-        <p>{firstname}</p>
-        <p>{lastname}</p>
-        <p>{address}</p>
-        <p>{birthDate}</p>
-        <p>{message}</p>
+        <h3>USER UNIQUE ID: {uniqueID}</h3>
+        <p>Firstname: {firstname}</p>
+        <p>Lastname: {lastname}</p>
+        <p>Address: {address}</p>
+        <p>Date of Birth: {birthDate}</p>
+        <p>Favorite Quote: {message}</p>
       </div>
     );
   }
