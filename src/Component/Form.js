@@ -19,10 +19,27 @@ class Form extends Component {
   onSubmit = e => {
     e.preventDefault();
     const { firstname, lastname, address, birthDate, message } = this.state;
-    const user = { firstname, lastname, address, birthDate, message, uniqueID:rand() };
+    if (
+      !this.refs.firstname.value ||
+      !this.refs.lastname.value ||
+      !this.refs.address.value ||
+      !this.refs.birthdate.value ||
+      !this.refs.message.value
+    ) {
+      return alert("Fill all the required boxes");
+    }
+
+    const user = {
+      firstname,
+      lastname,
+      address,
+      birthDate,
+      message,
+      uniqueID: rand()
+    };
     this.props.addUser(user);
 
-    console.log( user);
+    console.log(user);
     this.refs.firstname.value = "";
     this.refs.lastname.value = "";
     this.refs.address.value = "";
@@ -46,7 +63,9 @@ class Form extends Component {
           </div>
 
           <div className="userName">
-            <h4>Name: </h4>
+            <h4>
+              Name: <span style={{ color: "red" }}>*</span>
+            </h4>
             <input
               type="text"
               name="firstname"
@@ -63,7 +82,9 @@ class Form extends Component {
             />
           </div>
           <div className="userAddress">
-            <h4>Address: </h4>
+            <h4>
+              Address: <span style={{ color: "red" }}>*</span>
+            </h4>
             <input
               type="text"
               name="address"
@@ -73,7 +94,9 @@ class Form extends Component {
             />
           </div>
           <div className="userBirthDate">
-            <h4>Date of Birth: </h4>
+            <h4>
+              Date of Birth: <span style={{ color: "red" }}>*</span>
+            </h4>
             <input
               type="text"
               name="birthDate"
@@ -83,20 +106,28 @@ class Form extends Component {
             />
           </div>
           <div className="message">
-            <h4>Favorite Quote: </h4>
+            <h4>
+              Favorite Quote: <span style={{ color: "red" }}>*</span>
+            </h4>
             <input
               type="text"
               name="message"
               placeholder="Your favorite quote"
               ref="message"
+              style={{ height: "50px" }}
               onChange={this.onChange}
             />
           </div>
           <div className="submit">
             <input type="submit" value="Submit" className="btn" />
           </div>
-          <div className="check users">
-            <Link to="/users-list">UserList</Link>
+          <div className="check users" style={{ marginTop: "30px" }}>
+            <Link
+              to="/users-list"
+              style={{ color: "green", textDecoration: "none" }}
+            >
+              Click here to check UsersList
+            </Link>
           </div>
         </div>
       </form>
