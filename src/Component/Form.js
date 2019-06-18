@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import { rand } from "../utils/random";
 
 class Form extends Component {
   state = {
-    users: [],
+    uniqueID: "",
     firstname: "",
     lastname: "",
     address: "",
@@ -17,8 +18,9 @@ class Form extends Component {
   };
   onSubmit = e => {
     e.preventDefault();
-    const { firstname, lastname, address, birthDate, message } = this.state;
-    const user = { firstname, lastname, address, birthDate, message };
+    this.setState({uniqueID:rand()})
+    const { firstname, lastname, address, birthDate, message, uniqueID } = this.state;
+    const user = { firstname, lastname, address, birthDate, message, uniqueID };
     this.props.addUser(user);
 
     // this.setState({ users: this.state.users.push(user) });
