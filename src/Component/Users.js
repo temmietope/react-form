@@ -1,27 +1,24 @@
-import React, { Component } from "react";
+import React from "react";
 
-
-class Users extends Component {
-  render() {
-    const {
-      uniqueID,
-      firstname,
-      lastname,
-      address,
-      birthDate,
-      message
-    } = this.props.user;
-    return (
-      <div>
-        <h3>USER UNIQUE ID: {uniqueID}</h3>
-        <p>Firstname: {firstname}</p>
-        <p>Lastname: {lastname}</p>
-        <p>Address: {address}</p>
-        <p>Date of Birth: {birthDate}</p>
-        <p>Favorite Quote: {message}</p>
-      </div>
-    );
-  }
-}
+const Users = () => {
+  const {
+    uniqueID,
+    firstname,
+    lastname,
+    address,
+    birthDate,
+    message
+  } = this.props.user;
+  return (
+    <div>
+      <h3>USER UNIQUE ID: {uniqueID}</h3>
+      <p>Firstname: {firstname}</p>
+      <p>Lastname: {lastname}</p>
+      <p>Address: {address}</p>
+      <p>Date of Birth: {birthDate}</p>
+      <p>Favorite Quote: {message}</p>
+    </div>
+  );
+};
 
 export default Users;
