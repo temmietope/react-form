@@ -1,14 +1,7 @@
 import React from "react";
 
-const Users = () => {
-  const {
-    uniqueID,
-    firstname,
-    lastname,
-    address,
-    birthDate,
-    message
-  } = this.props.user;
+const Users = ({ user }) => {
+  const { uniqueID, firstname, lastname, address, birthDate, message } = user;
   return (
     <div>
       <h3>USER UNIQUE ID: {uniqueID}</h3>
