@@ -1,10 +1,8 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { rand } from "../utils/random";
-import Userslist from "./Userslist";
+import { withRouter } from "react-router-dom";
 
-
-const Form = () => {
+const Form = props => {
   const [register, setRegister] = useState({
     firstname: "",
     lastname: "",
@@ -12,8 +10,7 @@ const Form = () => {
     birthDate: "",
     message: ""
   });
-  const[users, setUsers] = useState([])
-
+  const [users, setUsers] = useState([]);
   const onChange = e => {
     setRegister({
       ...register,
@@ -32,107 +29,110 @@ const Form = () => {
       message,
       uniqueID: rand()
     };
-    setUsers(users.concat(user))
+    const newUsers = [...users, user];
+    setUsers(newUsers);
+  };
+  const onClick = e => {
+    props.history.push({ pathname: "/users-list", state: users });
   };
   return (
     <>
-    <form
-      onSubmit={e => {
-        onSubmit(e);
-      }}
-    >
-      <div
-        className="form"
-        style={{
-          display: "flex",
-          flexFlow: "column",
-          justifyContent: "center",
-          alignItems: "center"
+      <form
+        onSubmit={e => {
+          onSubmit(e);
         }}
       >
-        <div className="signup" style={{ textAlign: "center" }}>
-          <h2>Sign up for free</h2>
-        </div>
+        <div
+          className="form"
+          style={{
+            display: "flex",
+            flexFlow: "column",
+            justifyContent: "center",
+            alignItems: "center"
+          }}
+        >
+          <div className="signup" style={{ textAlign: "center" }}>
+            <h2>Sign up for free</h2>
+          </div>
 
-        <div className="userName">
-          <h4>
-            Name: <span style={{ color: "red" }}>*</span>
-          </h4>
-          <input
-            type="text"
-            name="firstname"
-            placeholder="Firstname"
-            onChange={e => {
-              onChange(e);
-            }}
-          />
-          <input
-            type="text"
-            name="lastname"
-            placeholder="Lastname"
-            onChange={e => {
-              onChange(e);
-            }}
-          />
+          <div className="userName">
+            <h4>
+              Name: <span style={{ color: "red" }}>*</span>
+            </h4>
+            <input
+              type="text"
+              name="firstname"
+              placeholder="Firstname"
+              onChange={e => {
+                onChange(e);
+              }}
+            />
+            <input
+              type="text"
+              name="lastname"
+              placeholder="Lastname"
+              onChange={e => {
+                onChange(e);
+              }}
+            />
+          </div>
+          <div className="userAddress">
+            <h4>
+              Address: <span style={{ color: "red" }}>*</span>
+            </h4>
+            <input
+              type="text"
+              name="address"
+              placeholder="Your address"
+              onChange={e => {
+                onChange(e);
+              }}
+            />
+          </div>
+          <div className="userBirthDate">
+            <h4>
+              Date of Birth: <span style={{ color: "red" }}>*</span>
+            </h4>
+            <input
+              type="text"
+              name="birthDate"
+              placeholder="dd/mm"
+              onChange={e => {
+                onChange(e);
+              }}
+            />
+          </div>
+          <div className="message">
+            <h4>
+              Favorite Quote: <span style={{ color: "red" }}>*</span>
+            </h4>
+            <input
+              type="text"
+              name="message"
+              placeholder="Your favorite quote"
+              style={{ height: "50px" }}
+              onChange={e => {
+                onChange(e);
+              }}
+            />
+          </div>
+          <div className="submit">
+            <input type="submit" value="Submit" className="btn" />
+          </div>
+          <div className="check users" style={{ marginTop: "30px" }}>
+            <button
+              onClick={e => {
+                onClick(e);
+              }}
+              style={{ color: "green", border: "black 1px solid" }}
+            >
+              Click here to check UsersList
+            </button>
+          </div>
         </div>
-        <div className="userAddress">
-          <h4>
-            Address: <span style={{ color: "red" }}>*</span>
-          </h4>
-          <input
-            type="text"
-            name="address"
-            placeholder="Your address"
-            onChange={e => {
-              onChange(e);
-            }}
-          />
-        </div>
-        <div className="userBirthDate">
-          <h4>
-            Date of Birth: <span style={{ color: "red" }}>*</span>
-          </h4>
-          <input
-            type="text"
-            name="birthDate"
-            placeholder="dd/mm"
-            onChange={e => {
-              onChange(e);
-            }}
-          />
-        </div>
-        <div className="message">
-          <h4>
-            Favorite Quote: <span style={{ color: "red" }}>*</span>
-          </h4>
-          <input
-            type="text"
-            name="message"
-            placeholder="Your favorite quote"
-            style={{ height: "50px" }}
-            onChange={e => {
-              onChange(e);
-            }}
-          />
-        </div>
-        <div className="submit">
-          <input type="submit" value="Submit" className="btn" />
-        </div>
-        <div className="check users" style={{ marginTop: "30px" }}>
-          <Link
-            to="/users-list"
-            style={{ color: "green", textDecoration: "none" }}
-          >
-            Click here to check UsersList
-          </Link>
-        </div>
-      </div>
-    </form>
-    <div className="userslist">
-    <Userslist userslist={users}/>
-  </div>
-  </>
+      </form>
+    </>
   );
 };
 
-export default Form;
+export default withRouter(Form);
